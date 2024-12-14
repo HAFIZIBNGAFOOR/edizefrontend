@@ -1,0 +1,57 @@
+<app-nav></app-nav>
+
+<!-- component -->
+
+<div class="w-full h-full">
+  <div class="flex flex-no-wrap">
+    <div
+      class="w-64 absolute sm:relative bg-white shadow md:h-screen flex-col justify-between hidden sm:flex"
+    >
+      <div class="px-8">
+        <!-- <div class="h-16 w-full flex items-center">
+                        <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-[#5932EA] md:text-3xl lg:text-4xl dark:text-[#5932EA]"></h1>
+                    </div> -->
+        <ul class="mt-12">
+          <li
+            routerLink="/dashboard"
+            routerLinkActive="text-white hover:text-[#5932EA] hover:border-2 hover:bg-white bg-[#5932EA] rounded-lg "
+            class="flex w-full justify-between text-gray-500 cursor-pointer items-center mb-6"
+          >
+            <a
+              class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              <span class="text-lg ml-2">Dashboard</span>
+            </a>
+          </li>
+          <li
+            routerLink="/schools"
+            routerLinkActive="text-white hover:text-[#5932EA] hover:border-2 hover:bg-white bg-[#5932EA] rounded-lg "
+            class="flex w-full justify-between text-gray-500 hover:text-gray-300 cursor-pointer items-center mb-6"
+          >
+            <a
+              class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              <span class="text-lg ml-2">CRM </span>
+            </a>
+          </li>
+          <li
+            routerLink="/school-lists"
+            routerLinkActive="text-white hover:text-[#5932EA] hover:border-2 hover:bg-white bg-[#5932EA] rounded-lg"
+            class="flex w-full justify-between text-gray-500 hover:text-gray-300 cursor-pointer items-center mb-6"
+          >
+            <a
+              class="flex items-center focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              <span class="text-lg ml-2">Deals</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container mx-auto py-10 h-full md:w-4/5 w-11/12 px-3">
+      <div class="w-full h-full rounded border-2 p-10 border-gray-300">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,132 @@
+<app-nav></app-nav>
+
+<div class="max-w-lg mx-auto border border-gray-300 rounded-lg p-4 m-10">
+  <div class="flex flex-col items-center justify-center">
+    <div class="mx-auto mb-5">
+      <h1
+        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-[#5932EA] md:text-2xl lg:text-3xl dark:text-[#5932EA]"
+      >
+        PROSPECTS
+      </h1>
+    </div>
+
+    <div *ngIf="isLoading" role="status" class="w-full animate-pulse">
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <span class="sr-only">Loading...</span>
+    </div>
+
+    <div *ngIf="!isLoading" class="w-full">
+      <div class="my-2 flex justify-end">
+        <button
+          *ngIf="!isEditMode"
+          (click)="enableEditMode()"
+          class="text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-700"
+        >
+          Edit
+        </button>
+        <button
+          *ngIf="isEditMode"
+          (click)="saveChanges()"
+          class="text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-700 me-2"
+        >
+          Save
+        </button>
+        <button
+          *ngIf="isEditMode"
+          (click)="cancelEdit()"
+          class="text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 dark:bg-gray-500 dark:hover:bg-gray-600 dark:focus:ring-gray-700"
+        >
+          Cancel
+        </button>
+      </div>
+
+      <div *ngIf="!isEditMode">
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">Name of School:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.name }}</p>
+        </div>
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">Address:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.address }}</p>
+        </div>
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">District:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.district }}</p>
+        </div>
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">UDISE Number:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.UDSE_Number }}</p>
+        </div>
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">Phone Number:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.phone }}</p>
+        </div>
+        <div class="my-2 flex items-start">
+          <h3 class="text-lg font-normal text-gray-600 mr-2">State:</h3>
+          <p class="bg-white text-lg font-medium text-black rounded-lg">{{ singleSchool.state }}</p>
+        </div>
+      </div>
+
+      <div *ngIf="isEditMode">
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">Name of School:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.name"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the name of the school"
+          />
+        </div>
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">Address:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.address"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the address"
+          />
+        </div>
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">District:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.district"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the district"
+          />
+        </div>
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">UDISE Number:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.UDSE_Number"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the UDISE number"
+          />
+        </div>
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">Phone Number:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.phone"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the phone number"
+          />
+        </div>
+        <div class="my-2 flex items-center">
+          <h3 class="text-lg font-normal text-gray-600 w-1/3 mr-2 text-left">State:</h3>
+          <input
+            type="text"
+            [(ngModel)]="singleSchool.state"
+            class="bg-white text-lg font-medium text-black rounded-lg border border-gray-300 p-2 w-2/3"
+            placeholder="Enter the state"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

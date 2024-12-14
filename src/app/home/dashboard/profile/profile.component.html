@@ -1,0 +1,67 @@
+<app-nav></app-nav>
+
+  <div class="flex justify-end m-3">
+    <button type="button" (click)="logout()" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-lg px-8 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Logout</button>
+</div>
+
+
+  <div class="mx-auto max-w-lg  bg-white mt-10 shadow-md rounded-lg overflow-hidden">
+    <div class="p-6">
+        <h2 class="text-xl font-semibold text-[#5932EA]  mb-4 text-center">User Profile</h2>
+        <form [formGroup]="form">
+            <div class="grid grid-cols-2 gap-4 justify-center items-center">
+                <div *ngIf="!isEditing" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">First Name</label>
+                    <p class="mt-1 text-sm text-gray-900 ">{{ user.first_name }}</p>
+                </div>
+                <div *ngIf="isEditing" class="mb-4">
+                    <label for="firstName" class="block text-sm font-medium text-gray-600 dark:text-gray-400">First Name</label>
+                    <input type="text" id="firstName" formControlName="first_name" name="firstName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" [(ngModel)]="user.first_name">
+                </div>
+    
+                <div *ngIf="!isEditing" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Last Name</label>
+                    <p class="mt-1 text-sm text-gray-900">{{ user.last_name }}</p>
+                </div>
+                <div *ngIf="isEditing" class="mb-4">
+                    <label for="lastName" class="block text-sm font-medium text-gray-600 dark:text-gray-400">Last Name</label>
+                    <input type="text"  id="lastName" formControlName="last_name" name="lastName" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" [(ngModel)]="user.last_name">
+                </div>
+                <div *ngIf="!isEditing" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Last Name</label>
+                    <p class="mt-1 text-sm text-gray-900 ">{{ user.last_name }}</p>
+                </div>
+                <div *ngIf="isEditing" class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-600 dark:text-gray-400">Email</label>
+                    <input type="text"  id="email" formControlName="email" name="email" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" [(ngModel)]="user.email">
+                </div>
+                <div *ngIf="!isEditing" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">Phone</label>
+                    <p class="mt-1 text-sm text-gray-900 ">{{ user.phone }}</p>
+                </div>
+                <div *ngIf="isEditing" class="mb-4">
+                    <label for="phone" class="block text-sm font-medium text-gray-600 dark:text-gray-400">Phone</label>
+                    <input type="text"  id="phone" formControlName="phone" name="phone" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" [(ngModel)]="user.phone">
+                </div>
+                <div *ngIf="!isEditing" class="mb-4">
+                    <label class="block text-sm font-medium text-gray-600 dark:text-gray-400">District</label>
+                    <p class="mt-1 text-sm text-gray-900 ">{{ user.district }}</p>
+                </div>
+                <div *ngIf="isEditing" class="mb-4">
+                    <label for="district" class="block text-sm font-medium text-gray-600 dark:text-gray-400">District</label>
+                    <input type="text"  id="district" formControlName="district" name="district" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" [(ngModel)]="user.district">
+                </div>
+            </div>
+        </form>
+       
+
+            
+
+        <div class="mb-4 text-center">
+            <button (click)="toggleEditing()" class="rounded-lg text-sm font-medium text-center bg-blue-600 text-white px-4 py-2 " *ngIf="!isEditing">Edit</button>
+            <button (click)="onSubmit()" class="rounded-lg text-sm font-medium text-center bg-blue-600 text-white px-4 py-2 mr-2" *ngIf="isEditing">Save</button>
+            <button (click)="cancelEditing()" class="rounded-lg text-sm font-medium text-center bg-blue-600 text-white px-4 py-2" *ngIf="isEditing">Cancel</button>
+        </div>
+    </div>
+</div>
+

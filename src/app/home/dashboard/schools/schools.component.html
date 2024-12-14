@@ -1,0 +1,255 @@
+<div
+  *ngIf="isLoading"
+  role="status"
+  class="p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700"
+>
+  <!-- <div class="h-2.5 bg-gray-200 rounded-full  w-32 mb-2.5"></div> -->
+  <div class="flex items-baseline mt-4">
+    <div class="w-28 h-2 mb-10 bg-gray-200 rounded-full"></div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-72"></div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6"></div>
+    <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg"></div>
+    <div class="w-full h-64 ms-6 bg-gray-200 rounded-t-lg"></div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6"></div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6"></div>
+  </div>
+  <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6"></div>
+  <span class="sr-only">Loading...</span>
+</div>
+
+<div *ngIf="!isLoading" class="container mx-auto">
+  <h1 class="text-2xl font-bold mb-4">CRM</h1>
+
+  <button
+    (click)="toAddSchool()"
+    type="button"
+    class="text-white bg-gradient-to-r m-3 from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+  >
+    Add new Deal
+  </button>
+
+<div class="overflow-x-auto">
+  <div class="min-w-max grid grid-flow-col auto-cols-auto gap-4">
+    <!-- To Do Column -->
+    <div
+      class="bg-white rounded shadow p-4 column prospect-column max-h-96 overflow-y-auto "
+      (drop)="onDrop($event, 'prospect', '')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'appointment', 'prospect')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        PROSPECTS
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('Prospect')"
+        (click)="schoolView('prospect', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'prospect')"
+        (touchstart)="onTouchStart($event, item, 'prospect')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- In Progress Column -->
+    <div
+      class="bg-white rounded shadow p-4 column appointment-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'appointment', 'prospect')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'kdm', 'appointment')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        APPOINTMENT FIXED
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('appointment')"
+        (click)="schoolView('appointment', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'appointment')"
+        (touchstart)="onTouchStart($event, item, 'appointment')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Done Column -->
+    <div
+      class="bg-white rounded shadow p-4 column kdm-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'kdm', 'appointment')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'product-demo', 'kdm')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        KDM MEETING
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('kdm')"
+        (click)="schoolView('kdm', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'kdm')"
+        (touchstart)="onTouchStart($event, item, 'kdm')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Product Demo Scheduled Column -->
+    <div
+      class="bg-white rounded shadow p-4 column product-demo-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'product-demo', 'kdm')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'product-presentation', 'product-demo')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        PRODUCT DEMO SCHEDULED
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('product-demo')"
+        (click)="schoolView('product-demo', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'product-demo')"
+        (touchstart)="onTouchStart($event, item, 'product-demo')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Product Presentation Column -->
+    <div
+      class="bg-white rounded shadow p-4 column product-presentation-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'product-presentation', 'product-demo')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'hot-lead', 'product-presentation')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        PRODUCT PRESENTATION
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('product-presentation')"
+        (click)="schoolView('product-presentation', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'product-presentation')"
+        (touchstart)="onTouchStart($event, item, 'product-presentation')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Hot Lead Column -->
+    <div
+      class="bg-white rounded shadow p-4 column hot-lead-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'hot-lead', 'product-presentation')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'proposal-signed', 'hot-lead')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        HOT LEAD
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('hot-lead')"
+        (click)="schoolView('hot-lead', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'hot-lead')"
+        (touchstart)="onTouchStart($event, item, 'hot-lead')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Purchase Order Signed Column -->
+    <div
+      class="bg-white rounded shadow p-4 column proposal-signed-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'proposal-signed', 'hot-lead')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'parent-orientation', 'proposal-signed')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        PURCHASE ORDER SIGNED
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('proposal-signed')"
+        (click)="schoolView('proposal-signed', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'proposal-signed')"
+        (touchstart)="onTouchStart($event, item, 'proposal-signed')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Parent Orientation Column -->
+    <div
+      class="bg-white rounded shadow p-4 column parent-orientation-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'parent-orientation', 'proposal-signed')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'contract-signed', 'parent-orientation')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        PARENT ORIENTATION
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('parent-orientation')"
+        (click)="schoolView('parent-orientation', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'parent-orientation')"
+        (touchstart)="onTouchStart($event, item, 'parent-orientation')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Contract Signed Column -->
+    <div
+      class="bg-white rounded shadow p-4 column contract-signed-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'contract-signed', 'parent-orientation')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'lost', 'contract-signed')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        CONTRACT SIGNED
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('contract-signed')"
+        (click)="schoolView('contract-signed', item._id)"
+        draggable="true"
+        class="bg-green-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'contract-signed')"
+        (touchstart)="onTouchStart($event, item, 'contract-signed')"
+        (touchmove)="onTouchMove($event)"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+    <!-- Lost Column -->
+    <div
+      class="bg-white rounded shadow p-4 column lost-column max-h-96 overflow-y-auto"
+      (drop)="onDrop($event, 'lost', 'contract-signed')"
+      (dragover)="onDragOver($event)"
+      (touchend)="onTouchEnd($event, 'lost', 'lost')"
+    >
+      <h2 class="text-lg md:text-base mb-2 truncate sticky top-0 bg-white">
+        LOST
+      </h2>
+      <div
+        *ngFor="let item of filterSchool('lost')"
+        (click)="schoolView('lost', item._id)"
+        draggable="true"
+        class="bg-red-200 p-2 rounded mb-2 text-sm md:text-xs hover:cursor-pointer"
+        (dragstart)="onDragStart($event, item, 'lost')"
+      >
+        {{ item.name }}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>

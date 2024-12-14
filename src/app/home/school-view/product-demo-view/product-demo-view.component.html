@@ -1,0 +1,78 @@
+<app-nav></app-nav>
+<div class="max-w-lg mx-auto border border-gray-300 rounded-lg p-4 m-10">
+  <div class="flex flex-col items-center justify-center">
+    <div class=" mx-auto mb-5">
+      <h1
+        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-[#5932EA] md:text-2xl lg:text-3xl dark:text-[#5932EA]"
+      >
+        PRODUCT DEMO
+      </h1>
+    </div>
+    <div *ngIf="isLoading" role="status" class="w-full animate-pulse">
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+        <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+        <span class="sr-only">Loading...</span>
+      </div>
+    <div *ngIf="!isLoading" class="mx-auto">
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">
+          Support Required:
+        </h3>
+        <p
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+          {{ singleSchool.support_required | uppercase}}
+        </p>
+      </div>
+      <div class="flex flex-wrap justify-center items-center">
+        <button
+          type="button"
+          (click)="navigateTo('kdm')" 
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 flex items-center justify-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 5H1m0 0 4 4M1 5l4-4"
+            />
+          </svg>
+          <span class="mr-2">View KDM</span>
+        </button>
+        <button
+          (click)="navigateTo('product-presentation')"
+          *ngIf="singleSchool.demo_attended_by !== undefined && singleSchool.demo_attended_by.length>0"
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 flex items-center justify-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          <span class="mr-2">View Product Presentation</span>
+          <svg
+            class="w-6 h-6 text-gray-800 dark:text-white leftarrow"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

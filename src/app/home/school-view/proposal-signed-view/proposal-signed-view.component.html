@@ -1,0 +1,125 @@
+<app-nav></app-nav>
+<div class="max-w-lg mx-auto border border-gray-300 rounded-lg p-4 m-10">
+  <div class="flex flex-col items-center justify-center">
+    <div class=" mx-auto mb-5">
+      <h1
+        class="mb-4 text-2xl font-extrabold leading-none tracking-tight text-[#5932EA] md:text-2xl lg:text-3xl dark:text-[#5932EA]"
+      >
+        PURCHASE ORDER SIGNED
+      </h1>
+    </div>
+    <div *ngIf="isLoading" role="status" class="w-full animate-pulse">
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-full m-4"></div>
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div *ngIf="!isLoading" class="mx-auto">
+      
+
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">
+          Price for Classed:
+        </h3>
+        <p
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+          {{ singleSchool.Price_for_class }}
+        </p>
+      </div>
+
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">Total Deal Value Year 1:</h3>
+        <p 
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+          {{ singleSchool.total_deal.year1 }}
+        </p>
+      </div>
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">Total Deal Value Year 2:</h3>
+        <p 
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+          {{ singleSchool.total_deal.year2 }}
+        </p>
+      </div>
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">Total Deal Value Year 3:</h3>
+        <p 
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+          {{ singleSchool.total_deal.year3 }}
+        </p>
+      </div>
+
+      <div *ngFor="let data of singleSchool.students_count" class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">
+           Class : {{data.class}}
+        </h3>
+        <p
+          class="bg-white text-lg font-medium text-black rounded-lg"
+        >
+           Count : {{ data.count }}
+        </p>
+      </div>
+      <div class="my-2 flex items-center justify-normal">
+        <h3 class="text-lg font-normal text-gray-600 mr-2">
+          PO Scan Copy:
+        </h3>
+        <button class="bg-blue-500 hover:bg-blue-700 hover:cursor-pointer text-white font-bold py-1.5 px-3 rounded" (click)="viewScanCopy()">View</button>
+      </div>
+      
+      <div class="flex flex-wrap justify-center items-center">
+
+      <button
+        type="button"
+        (click)="navigateTo('hot-lead')"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 flex items-center justify-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+      <svg
+          class="w-6 h-6 text-gray-800 dark:text-white"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M13 5H1m0 0 4 4M1 5l4-4"
+          />
+        </svg>
+        <span class="mr-2">View Hot Lead</span>
+        
+      </button>
+      <button
+        (click)="navigateTo('parent-orientation')"
+        *ngIf="singleSchool.Parent_Orientation_Done_Date !== undefined"
+        type="button"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 flex items-center justify-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        <span class="mr-2">View Parent Orientation</span>
+        <svg
+          class="w-6 h-6 text-gray-800 dark:text-white leftarrow"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 14 10"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M1 5h12m0 0L9 1m4 4L9 9"
+          />
+        </svg>
+      </button>
+      </div>
+    </div>
+  </div>
+</div>

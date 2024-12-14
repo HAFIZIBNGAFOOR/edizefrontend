@@ -1,0 +1,206 @@
+
+<div *ngIf="isLoading" role="status" class="p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+  <div class="h-2.5 bg-gray-200 rounded-full  w-32 mb-2.5"></div>
+  <div class="flex items-baseline mt-4">
+    <div class="w-48 h-2 mb-10 bg-gray-200 rounded-full "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 "></div>
+      <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg "></div>
+      <div class="w-full h-64 ms-6 bg-gray-200 rounded-t-lg "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 "></div>
+    </div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 "></div>
+  <span class="sr-only">Loading...</span>
+</div>
+
+<div *ngIf="!isLoading" class="grid grid-cols-12 gap-6 mt-5">
+  <a
+    class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-4 xl:col-span-4 intro-y bg-white"
+  >
+    <div class="p-5">
+      <div class="flex justify-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          class="bi bi-bank h-7 w-7 text-blue-500"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="m8 0 6.61 3h.89a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5H15v7a.5.5 0 0 1 .485.38l.5 2a.498.498 0 0 1-.485.62H.5a.498.498 0 0 1-.485-.62l.5-2A.5.5 0 0 1 1 13V6H.5a.5.5 0 0 1-.5-.5v-2A.5.5 0 0 1 .5 3h.89zM3.777 3h8.447L8 1zM2 6v7h1V6zm2 0v7h2.5V6zm3.5 0v7h1V6zm2 0v7H12V6zM13 6v7h1V6zm2-1V4H1v1zm-.39 9H1.39l-.25 1h13.72z"
+          />
+        </svg>
+      </div>
+      <div class="ml-2 w-full flex-1">
+        <div>
+          <div class="mt-3 text-3xl font-bold leading-8 text-center">{{dashboardData.totalSchools}}</div>
+
+          <div class="mt-1 text-base text-gray-600 text-center">Schools Attended</div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <a
+    class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-4 xl:col-span-4 intro-y bg-white"
+  >
+    <div class="p-5">
+      <div class="flex justify-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-7 w-7 text-green-500"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+          />
+        </svg>
+      </div>
+      <div class="ml-2 w-full flex-1">
+        <div>
+          <div class="mt-3 text-3xl font-bold leading-8 text-center">{{dashboardData.hotLead}}</div>
+
+          <div class="mt-1 text-base text-gray-600 text-center">Hot Lead</div>
+        </div>
+      </div>
+    </div>
+  </a>
+  <a
+    class="transform hover:scale-105 transition duration-300 shadow-xl rounded-lg col-span-12 sm:col-span-4 xl:col-span-4 intro-y bg-white"
+  >
+    <div class="p-5 flex items-center flex-col">
+      <div class="flex justify-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
+          class="bi bi-graph-down h-7 w-7 text-red-500"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M0 0h1v15h15v1H0zm14.817 11.887a.5.5 0 0 0 .07-.704l-4.5-5.5a.5.5 0 0 0-.74-.037L7.06 8.233 3.404 3.206a.5.5 0 0 0-.808.588l4 5.5a.5.5 0 0 0 .758.06l2.609-2.61 4.15 5.073a.5.5 0 0 0 .704.07"
+          />
+        </svg>
+      </div>
+      <div class="mt-2">
+        <div class="text-3xl font-bold leading-8 text-center">{{dashboardData.lostSchools}}</div>
+        <div class="mt-1 text-base text-gray-600 text-center">Lost</div>
+      </div>
+    </div>
+  </a>
+</div>
+
+<div *ngIf="!isLoading" class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
+  <div class="py-4 bg-white dark:bg-white">
+    <label for="table-search" class="sr-only">Search</label>
+    <div class="relative mt-1">
+      <div
+        class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
+      >
+        <svg
+          class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 20 20"
+        >
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+          />
+        </svg>
+      </div>
+      <input
+        type="text"
+        id="table-search"
+        [formControl]="searchControl"
+        class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Search for items"
+      />
+    </div>
+  </div>
+  <table
+    class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+  >
+<ng-container *ngIf="schoolLists == null">
+  <div class="text-center text-red-400 text-lg"> No School Found</div>
+</ng-container>
+
+    <thead
+    *ngIf="schoolLists !=null"
+      class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400"
+    >
+      <tr>
+        <th scope="col" class="px-6 py-3">Name of School</th>
+        <th scope="col" class="px-6 py-3">District</th>
+        <th scope="col" class="px-6 py-3">Status</th>
+        <th scope="col" class="px-6 py-3">Phone No.</th>
+        <th scope="col" class="px-6 py-3">School ID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let school of schoolLists"
+        class="bg-white border-b dark:bg-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+      >
+        <th
+          scope="row"
+          class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+        >
+          {{ school.name | uppercase }}
+        </th>
+        <td class="px-6 py-4 text-gray-900">
+          {{ school.district }}
+        </td>
+        <td class="px-6 py-4 text-gray-900">
+          {{ school.status }}
+        </td>
+        <td class="px-6 py-4 text-gray-900">
+          {{ school.phone }}
+        </td>
+        <td class="px-6 py-4 text-gray-900">
+          {{ school.SchoolId }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <nav *ngIf="schoolLists.length > 0" aria-label="Table navigation" class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" >
+    <!-- Show pagination info -->
+    <span class="text-sm font-normal text-gray-500  mb-4 md:mb-0 block w-full md:inline md:w-auto"
+      >Showing <span class="font-semibold text-gray-900 ">{{ (currentPage - 1) * pageSize + 1 }}-{{
+        totalPages
+      }}</span>
+      of  <span class="font-semibold text-gray-900 ">{{ schoolLists.length }}</span></span
+    >
+
+    <!-- Pagination buttons -->
+    <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+      <li class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
+        <button
+          (click)="onPageChange(currentPage - 1)"
+          [disabled]="currentPage === 1"
+          >Previous</button
+        >
+      </li>
+      <li class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white" *ngFor="let page of totalPagesArray">
+        <a (click)="onPageChange(page)" [class.active]="currentPage === page">{{
+          page
+        }}</a>
+      </li>
+      <li class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
+        <button
+          (click)="onPageChange(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+          >Next</button
+        >
+      </li>
+    </ul>
+  </nav>
+</div>

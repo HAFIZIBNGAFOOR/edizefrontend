@@ -1,0 +1,136 @@
+<div *ngIf="isLoading" role="status" class="p-4 border border-gray-200 rounded shadow animate-pulse md:p-6 dark:border-gray-700">
+  <!-- <div class="h-2.5 bg-gray-200 rounded-full  w-32 mb-2.5"></div> -->
+  <div class="flex items-baseline mt-4">
+    <div class="w-28 h-2 mb-10 bg-gray-200 rounded-full "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 "></div>
+      <div class="w-full h-56 ms-6 bg-gray-200 rounded-t-lg "></div>
+      <div class="w-full h-64 ms-6 bg-gray-200 rounded-t-lg "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 "></div>
+      <div class="w-full bg-gray-200 rounded-t-lg h-72 ms-6 "></div>
+    </div>
+    <div class="w-full bg-gray-200 rounded-t-lg h-80 ms-6 "></div>
+  <span class="sr-only">Loading...</span>
+</div>
+
+<h1 class="text-[#5932EA] font-bold text-center text-3xl">Deal</h1>
+
+<div *ngIf="!isLoading" class="relative overflow-x-auto shadow-md sm:rounded-lg p-4">
+    <div class="py-4 bg-white dark:bg-white">
+      <label for="table-search" class="sr-only">Search</label>
+      <div class="relative mt-1">
+        <div
+          class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+          <svg
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 20 20"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="table-search"
+          [formControl]="searchControl"
+          class="block pt-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-white dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-800 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search for items"
+        />
+      </div>
+    </div>
+    <table
+      class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+    >
+  <ng-container *ngIf="schoolLists == null">
+    <div class="text-center text-red-400 text-lg"> No School Found</div>
+  </ng-container>
+  
+      <thead
+      *ngIf="schoolLists !=null"
+        class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-white dark:text-gray-400"
+      >
+        <tr>
+          <th scope="col" class="px-6 py-3">Name of School</th>
+          <th scope="col" class="px-6 py-3">District</th>
+          <th scope="col" class="px-6 py-3">Status</th>
+          <th scope="col" class="px-6 py-3">Phone No.</th>
+          <th scope="col" class="px-6 py-3">School ID</th>
+          <th scope="col" class="px-6 py-3">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let school of schoolLists"
+          class="bg-white border-b dark:bg-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+        >
+          <th
+            scope="row"
+            class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+          >
+            {{ school.name | uppercase }}
+          </th>
+          <td class="px-6 py-4 text-gray-900">
+            {{ school.district }}
+          </td>
+          <td class="px-6 py-4 text-gray-900">
+            {{ school.status }}
+          </td>
+          <td class="px-6 py-4 text-gray-900">
+            {{ school.phone }} 
+          </td>
+          <td class="px-6 py-4 text-gray-900">
+            {{ school.SchoolId}}
+          </td>
+          <td (click)="onViewSchool(school._id)"  class="px-6 py-4 text-gray-900 hover:cursor-pointer">
+            <a
+              class="font-medium text-white rounded-lg bg-blue-500 px-4 py-2 hover:underline hover:cursor-pointer"
+              >VIEW</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav *ngIf="schoolLists.length > 0" aria-label="Table navigation" class="flex items-center flex-column flex-wrap md:flex-row justify-between pt-4" >
+      <!-- Show pagination info -->
+      <span class="text-sm font-normal text-gray-500  mb-4 md:mb-0 block w-full md:inline md:w-auto"
+        >Showing <span class="font-semibold text-gray-900 ">{{ (currentPage - 1) * pageSize + 1 }}-{{
+          totalPages
+        }}</span>
+        of  <span class="font-semibold text-gray-900 ">{{ schoolLists.length }}</span></span
+      >
+  
+      <!-- Pagination buttons -->
+      <ul class="inline-flex -space-x-px rtl:space-x-reverse text-sm h-8">
+        <li class="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
+          <button
+            (click)="onPageChange(currentPage - 1)"
+            [disabled]="currentPage === 1"
+            >Previous</button
+          >
+        </li>
+        <li class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white" *ngFor="let page of totalPagesArray">
+          <a (click)="onPageChange(page)" [class.active]="currentPage === page">{{
+            page
+          }}</a>
+        </li>
+        <li class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700  dark:border-gray-700  dark:hover:bg-gray-700 dark:hover:text-white">
+          <button
+            (click)="onPageChange(currentPage + 1)"
+            [disabled]="currentPage === totalPages"
+            >Next</button
+          >
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  
